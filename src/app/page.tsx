@@ -1,5 +1,5 @@
-import { ScreenIndexView } from '@/views/ScreenIndexView'
+import { RedirectHome } from '@/components/auth/RedirectHome'
 
 export default function Home() {
-  return <ScreenIndexView />
+  return <RedirectHome />
 }
