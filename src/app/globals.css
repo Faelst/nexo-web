@@ -1,26 +1,89 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Fontes do next/font: `inline` resolve as variáveis onde a classe é usada (no body), não no :root */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-ui: var(--font-schibsted), system-ui, sans-serif;
+  --font-display: var(--font-newsreader), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Design tokens extraídos de nexo.pen */
+@theme {
+  --color-paper: #ffffff;
+  --color-desk: #f6f7f9;
+  --color-canvas: #eef1f5;
+  --color-ink: #1b2431;
+  --color-ink-2: #3d4656;
+  --color-ink-3: #5b6472;
+  --color-rule: #e6e8ec;
+  --color-cta: #0062c4;
+  --color-cta-hover: #0057ae;
+  --color-control: #1b24311f;
+  --color-card-stroke: #1b243117;
+  --color-muted-dot: #1b243155;
+
+  --color-primary: #0285f7;
+  --color-primary-soft: #0285f712;
+  --color-primary-text: #0069c7;
+  --color-success: #00bd6c;
+  --color-success-soft: #00bd6c14;
+  --color-success-text: #00804a;
+  --color-warning: #f5a500;
+  --color-warning-soft: #f5a50018;
+  --color-warning-text: #946300;
+  --color-danger: #ee343b;
+  --color-danger-soft: #ee343b12;
+  --color-danger-text: #c4161d;
+
+  --color-bubble-ai: #e6effa;
+  --color-bubble-human: #e3f4ea;
+
+  --shadow-control: 0 1px 2px #1b24310d;
+  --shadow-card: 0 1px 2px #1b24310d, 0 6px 18px #1b24310a;
+  --shadow-bubble: 0 1px 2px #1b243112;
+  --shadow-cta: 0 1px 2px #0062c433, 0 6px 16px #0062c426;
+
+  --animate-msg-in: msg-in 0.2s ease-out;
+  --animate-typing: typing 1s infinite ease-in-out;
+  --animate-live: live-pulse 2s infinite;
+
+  @keyframes msg-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+  }
+
+  @keyframes typing {
+    0%,
+    60%,
+    100% {
+      opacity: 0.3;
+    }
+    30% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes live-pulse {
+    0% {
+      box-shadow: 0 0 0 0 #00bd6c66;
+    }
+    70% {
+      box-shadow: 0 0 0 8px #00bd6c00;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-paper font-ui text-[14.5px] text-ink antialiased;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-cta;
+  }
 }
